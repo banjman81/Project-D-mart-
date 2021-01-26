@@ -1,9 +1,5 @@
-/**
- * 
- */
-	var modal = document.getElementById("myModal").addEventListener("onclick", function(event){
-		event.preventDefault()
-	});
+
+	var modal = document.getElementById("myModal");
 	var btn = document.getElmentById("myBtn");
 	var span = document.getElementByClassName("close")[0];
 	btn.onclick = function(){
