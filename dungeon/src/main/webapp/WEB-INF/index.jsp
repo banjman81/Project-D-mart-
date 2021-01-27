@@ -55,7 +55,7 @@
 						<td colspan="2" class="text-center">
 							<form:checkbox path="agreed" value="1" class="mb-0 p-0"/>
 							<form:label path="agreed">
-						        Agree to terms and conditions
+						        Agree to <button id="myBtn" class=" align-top btn btn-link m-0 p-0">terms and conditions</button>
 						      </form:label>
 						      <h6 class="agreebox"><form:errors path="agreed"/></h6></td>
 						      
@@ -65,9 +65,6 @@
 					</tr>
 				</table>
 			</form:form>
-			<div class="text-center">
-				<button id="myBtn" class=" align-top btn btn-link m-0 p-0">terms and conditions</button>
-			</div>
 		</div>
 	</div>
 	<div id="myModal" class="modal">
@@ -199,19 +196,25 @@
   
 <script>
 var modal = document.getElementById("myModal");
-var btn = document.getElmentById("myBtn");
-var span = document.getElementByClassName("close")[0];
-btn.onclick = function(){
-	modal.style.display = "block";
-	}
-span.onclick = function(){
-	modal.style.display = "none";
-	}
+
+var btn = document.getElementById("myBtn");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+  modal.style.display = "block";
+  event.preventDefault();
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
 window.onclick = function(event) {
-	  if (event.target == modal) {
-	    modal.style.display = "none";
-	  }
-	}
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
 </body>
 </html>

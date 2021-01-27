@@ -4,10 +4,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dnd.project.Models.User;
@@ -58,6 +60,25 @@ public class UserController {
 	@RequestMapping("/login")
 	public String login() {
 		return "login.jsp";
+	}
+	
+	@PostMapping("/loguser")
+	public String logUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+		User isExist = userService.findByEmail(email);
+		boolean isValid = userService.authenticateUser(email,password);
+		if( isExist == null) {
+			redirectAttributes.addFlashAttribute("no_email", "User does not exist");
+			return "redirect:/login";
+		}
+		else if (isValid == true) {
+			User validUser = userService.findByEmail(email);
+			session.setAttribute("user_id", validUser.getId());
+			return "redirect:/home";
+		}
+		else {
+			redirectAttributes.addFlashAttribute("login_error", "Invalid login information");
+			return "redirect:/login";
+		}
 	}
 	
 	@RequestMapping("/logout")
