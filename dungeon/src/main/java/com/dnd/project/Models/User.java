@@ -44,6 +44,8 @@ public class User {
  @Column(updatable=false)
  private Date createdAt;
  private Date updatedAt;
+ 
+ 
 
  public User() {
 	 
