@@ -2,12 +2,18 @@ package com.dnd.project.Models;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -45,7 +51,16 @@ public class User {
  private Date createdAt;
  private Date updatedAt;
  
+ @ManyToMany(fetch = FetchType.LAZY)
+ @JoinTable(
+ 		name = "cart",
+ 		joinColumns = @JoinColumn(name = "user_id"), 
+ 		inverseJoinColumns = @JoinColumn(name = "item_id")
+ )
+ private List<Item> items;
  
+ @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+ private List<Item> createdItems;
 
  public User() {
 	 
@@ -97,6 +112,23 @@ public String getPasswordConfirmation() {
 
 public void setPasswordConfirmation(String passwordConfirmation) {
 	this.passwordConfirmation = passwordConfirmation;
+}
+
+
+public List<Item> getItems() {
+	return items;
+}
+
+public void setItems(List<Item> items) {
+	this.items = items;
+}
+
+public List<Item> getCreatedItems() {
+	return createdItems;
+}
+
+public void setCreatedItems(List<Item> createdItems) {
+	this.createdItems = createdItems;
 }
 
 public Date getCreatedAt() {

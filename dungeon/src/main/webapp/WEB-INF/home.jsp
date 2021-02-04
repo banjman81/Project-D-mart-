@@ -27,6 +27,35 @@
 		    	</ul>
 		  	</div>
 		</nav>
+		<div class="container">
+			<table class="table my-5 shopbg  text-center text-light">
+				<thead>
+					<tr>
+						<th>ITEM</th>
+						<th>CATEGORY</th>
+						<th>PRICE</th>
+						<th>SELLER</th>
+						<th>ACTION</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>adwd</td>
+						<td>awdw</td>
+						<td>adwd</td>
+						<td>awd</td>
+						<td><a href="" class="btn btn-primary">Buy</a></td>
+					</tr>
+					<tr>
+						<td>adwd</td>
+						<td>awdw</td>
+						<td>adwd</td>
+						<td>awd</td>
+						<td><a href="" class="btn btn-primary">Buy</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
